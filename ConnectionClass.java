@@ -1,44 +1,42 @@
-import java.io.*;
-import java.sql.*;
- 
-public class ConnectionClass { 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-    static final String driverClassName = "com.mysql.jdbc.Driver";//
-    static final String jdbcURL = "jdbc:mysql://localhost:3306/survey";//
-    static final String username = "root";//
-    static final String password = "1312";//
-  
-    static final String file = "survey.csv";//
-    
-    int batchSize = 20;//
- 
-    static final ConnectionClass connection = null;
-    
-    public class ConnectionClass() {
-         try {
-         
-			   Class.forName(driverClassName);
-		
-            } catch (ClassNotFoundException e) 
-              {e.printStackTrace();}
-    }
-    
-    public Connection getConnection() throws SQLException {
-		   Connection conn = null;
-		   conn = DriverManager.getConnection(jdcbURL, username, password);
-		   return conn;
-	}
+public class ConnectionClass {
+	String driverClassName = "com.mysql.cj.jdbc.Driver";
+	String jdbcURL = "jdbc:mysql://localhost:3306/survey";
+	String user = "root";
+	String pass = "1312";
    
-   public static ConnectionClass getInstance() {
-   		 
-           if (ConnectionClass == null) {
-   		      ConnectionClass = new ConnectionClass();
-   		  }
-		      
-           return ConnectionClass;
-	 }
+   String file = "survey.csv";
+   
+   int count = 0;
+
+	private static ConnectionClass connectionClass = null;
+   
+   
+	private ConnectionClass() {
+		try {
+			Class.forName(driverClassName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getConnection() throws SQLException {
+		Connection conn = null;
+		conn = DriverManager.getConnection(jdbcURL, user, pass);
+		return conn;
+	}
+
+	public static ConnectionClass getInstance() {
+		if (connectionClass == null) {
+			connectionClass = new ConnectionClass();
+		}
+		return connectionClass;
+	}
 }
-    // 
+// 
 //         try {
 //  
 //             connection = DriverManager.getConnection(jdbcURL, username, password);
