@@ -1,14 +1,19 @@
+//test class
 public class MainClass {
-
-	public static void main(String[] args) {
    
+   //main method
+	public static void main(String[] args) {
+      
+      //creating survey object from the DAO class
 		SurveyDAO survey = new SurveyDAO();
       
+      //creating object "john" from survey class and giving it a name and ID
 		Survey john = new Survey();
 		john.setName("John");
 		john.setID(8);
       
-		Survey martin = new Survey();
+      //creating object "martin" from survey class and giving it a name and ID
+      Survey martin = new Survey();
 		martin.setName("Martin");
 		martin.setID(6);
 		

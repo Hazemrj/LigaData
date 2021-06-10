@@ -2,7 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//Class for database connection
 public class ConnectionClass {
+
+   //initializing the database server attributes
 	String driverClassName = "com.mysql.cj.jdbc.Driver";
 	String jdbcURL = "jdbc:mysql://localhost:3306/survey";
 	String user = "root";
@@ -14,7 +17,7 @@ public class ConnectionClass {
 
 	private static ConnectionClass connectionClass = null;
    
-   
+   //getting an instance of the class
 	private ConnectionClass() {
 		try {
 			Class.forName(driverClassName);
@@ -22,13 +25,15 @@ public class ConnectionClass {
 			e.printStackTrace();
 		}
 	}
-
+   
+   //connect to databse using the jdbc URL and username/password
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		conn = DriverManager.getConnection(jdbcURL, user, pass);
 		return conn;
-	}
+	}  
 
+   //method for using the instance of the class
 	public static ConnectionClass getInstance() {
 		if (connectionClass == null) {
 			connectionClass = new ConnectionClass();

@@ -4,21 +4,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.*;
 
+//Class for Data Access Object
 public class SurveyDAO {
+
 	Connection connection = null;
 	PreparedStatement ptmt = null;
 	ResultSet resultSet = null;
 
+   //default constructor
 	public SurveyDAO() {
 
 	}
-
+   
+   //starting the connection using an instance from ConnectionClass
 	private Connection getConnection() throws SQLException {
 		Connection conn;
 		conn = ConnectionClass.getInstance().getConnection();
 		return conn;
 	}
 
+   //method to add values to the database table
 	public void add(Survey survey) {
 		try {
 			String queryString = "INSERT INTO SurveyTable (ID, Name) VALUES(?,?)";
@@ -107,7 +112,7 @@ public class SurveyDAO {
 // 	   }
 //    }
    
-
+   //method to update values to the database table
 	public void update(Survey survey) {
 
 		try {
@@ -137,6 +142,7 @@ public class SurveyDAO {
 		}
 	}
 
+   //method to add values to the database table
 	public void delete(int ID) {
 
 		try {
@@ -163,7 +169,8 @@ public class SurveyDAO {
 		}
 
 	}
-
+   
+   //method to print all values to the table
 	public void findAll() {
 		try {
 			String queryString = "SELECT * FROM surveyTable";
